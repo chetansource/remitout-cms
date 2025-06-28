@@ -70,6 +70,8 @@ export interface Config {
     users: User;
     media: Media;
     enquiries: Enquiry;
+    services: Service;
+    'why-remitout': WhyRemitout;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,6 +81,8 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     enquiries: EnquiriesSelect<false> | EnquiriesSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
+    'why-remitout': WhyRemitoutSelect<false> | WhyRemitoutSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -175,6 +179,38 @@ export interface Enquiry {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: string;
+  title: string;
+  subtitle?: string | null;
+  description?:
+    | {
+        text?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  image: string | Media;
+  buttonText?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "why-remitout".
+ */
+export interface WhyRemitout {
+  id: string;
+  title: string;
+  description: string;
+  iconType: 'Award' | 'PersonStar';
+  image: string | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -191,6 +227,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'enquiries';
         value: string | Enquiry;
+      } | null)
+    | ({
+        relationTo: 'services';
+        value: string | Service;
+      } | null)
+    | ({
+        relationTo: 'why-remitout';
+        value: string | WhyRemitout;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -285,6 +329,36 @@ export interface EnquiriesSelect<T extends boolean = true> {
   phoneNumber?: T;
   serviceInterestedIn?: T;
   message?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  description?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  image?: T;
+  buttonText?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "why-remitout_select".
+ */
+export interface WhyRemitoutSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  iconType?: T;
+  image?: T;
   updatedAt?: T;
   createdAt?: T;
 }
