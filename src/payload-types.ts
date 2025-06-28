@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     enquiries: Enquiry;
+    faqs: Faq;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,6 +80,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     enquiries: EnquiriesSelect<false> | EnquiriesSelect<true>;
+    faqs: FaqsSelect<false> | FaqsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -121,6 +123,8 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: string;
+  role: 'admin' | 'user';
+  name: string;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -175,6 +179,18 @@ export interface Enquiry {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
+export interface Faq {
+  id: string;
+  question: string;
+  answer: string;
+  category: 'pre-departure' | 'visa' | 'loan' | 'career';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -191,6 +207,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'enquiries';
         value: string | Enquiry;
+      } | null)
+    | ({
+        relationTo: 'faqs';
+        value: string | Faq;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -239,6 +259,8 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  role?: T;
+  name?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -285,6 +307,17 @@ export interface EnquiriesSelect<T extends boolean = true> {
   phoneNumber?: T;
   serviceInterestedIn?: T;
   message?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs_select".
+ */
+export interface FaqsSelect<T extends boolean = true> {
+  question?: T;
+  answer?: T;
+  category?: T;
   updatedAt?: T;
   createdAt?: T;
 }
