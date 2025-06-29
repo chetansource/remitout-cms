@@ -13,6 +13,10 @@ import Enquiries from './collections/Enquiries'
 import { Faqs } from './collections/Faqs'
 import Services from './collections/Services'
 import WhyRemitout from './collections/WhyRemitout'
+import { GetInTouch } from './collections/GetInTouch'
+import FooterContent from './collections/Footer'
+import Newsletters from './collections/Newsletters'
+import Testimonial from './collections/Testimonial'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -24,7 +28,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Enquiries,Faqs, Services, WhyRemitout],
+  collections: [Users, Media, Enquiries,Faqs, Services, WhyRemitout,GetInTouch,FooterContent,Newsletters,Testimonial],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

@@ -73,6 +73,10 @@ export interface Config {
     faqs: Faq;
     services: Service;
     'why-remitout': WhyRemitout;
+    'get-in-touch': GetInTouch;
+    'footer-content': FooterContent;
+    newsletters: Newsletter;
+    testimonial: Testimonial;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -85,6 +89,10 @@ export interface Config {
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
     'why-remitout': WhyRemitoutSelect<false> | WhyRemitoutSelect<true>;
+    'get-in-touch': GetInTouchSelect<false> | GetInTouchSelect<true>;
+    'footer-content': FooterContentSelect<false> | FooterContentSelect<true>;
+    newsletters: NewslettersSelect<false> | NewslettersSelect<true>;
+    testimonial: TestimonialSelect<false> | TestimonialSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -227,6 +235,66 @@ export interface WhyRemitout {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "get-in-touch".
+ */
+export interface GetInTouch {
+  id: string;
+  name: string;
+  email: string;
+  message: string;
+  acceptTerms: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer-content".
+ */
+export interface FooterContent {
+  id: string;
+  officeAddress: string;
+  email: string;
+  phone: string;
+  videoImage: string | Media;
+  videoLink: string;
+  socialLinks: {
+    facebook: string;
+    instagram: string;
+    customIcon?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletters".
+ */
+export interface Newsletter {
+  id: string;
+  email: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonial".
+ */
+export interface Testimonial {
+  id: string;
+  testimonials?:
+    | {
+        text: string;
+        name: string;
+        rating: number;
+        avatar?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -255,6 +323,22 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'why-remitout';
         value: string | WhyRemitout;
+      } | null)
+    | ({
+        relationTo: 'get-in-touch';
+        value: string | GetInTouch;
+      } | null)
+    | ({
+        relationTo: 'footer-content';
+        value: string | FooterContent;
+      } | null)
+    | ({
+        relationTo: 'newsletters';
+        value: string | Newsletter;
+      } | null)
+    | ({
+        relationTo: 'testimonial';
+        value: string | Testimonial;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -392,6 +476,64 @@ export interface WhyRemitoutSelect<T extends boolean = true> {
   description?: T;
   iconType?: T;
   image?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "get-in-touch_select".
+ */
+export interface GetInTouchSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  message?: T;
+  acceptTerms?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer-content_select".
+ */
+export interface FooterContentSelect<T extends boolean = true> {
+  officeAddress?: T;
+  email?: T;
+  phone?: T;
+  videoImage?: T;
+  videoLink?: T;
+  socialLinks?:
+    | T
+    | {
+        facebook?: T;
+        instagram?: T;
+        customIcon?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletters_select".
+ */
+export interface NewslettersSelect<T extends boolean = true> {
+  email?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonial_select".
+ */
+export interface TestimonialSelect<T extends boolean = true> {
+  testimonials?:
+    | T
+    | {
+        text?: T;
+        name?: T;
+        rating?: T;
+        avatar?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
