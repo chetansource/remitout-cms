@@ -77,6 +77,9 @@ export interface Config {
     'footer-content': FooterContent;
     newsletters: Newsletter;
     testimonial: Testimonial;
+    homepageSections: HomepageSection;
+    contactDetails: ContactDetail;
+    studentTrustSection: StudentTrustSection;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -93,6 +96,9 @@ export interface Config {
     'footer-content': FooterContentSelect<false> | FooterContentSelect<true>;
     newsletters: NewslettersSelect<false> | NewslettersSelect<true>;
     testimonial: TestimonialSelect<false> | TestimonialSelect<true>;
+    homepageSections: HomepageSectionsSelect<false> | HomepageSectionsSelect<true>;
+    contactDetails: ContactDetailsSelect<false> | ContactDetailsSelect<true>;
+    studentTrustSection: StudentTrustSectionSelect<false> | StudentTrustSectionSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -295,6 +301,66 @@ export interface Testimonial {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepageSections".
+ */
+export interface HomepageSection {
+  id: string;
+  title: string;
+  hero?: {
+    highlight?: string | null;
+    description?: string | null;
+    ctaText?: string | null;
+    image?: (string | null) | Media;
+    testimonial?: {
+      text?: string | null;
+      author?: string | null;
+      rating?: number | null;
+      avatar?: (string | null) | Media;
+    };
+  };
+  services?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        iconType?: ('book' | 'flight' | 'pigMoney') | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contactDetails".
+ */
+export interface ContactDetail {
+  id: string;
+  phone: string;
+  email: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "studentTrustSection".
+ */
+export interface StudentTrustSection {
+  id: string;
+  studentCount: number;
+  description: string;
+  features: {
+    text?: string | null;
+    id?: string | null;
+  }[];
+  satisfactionPercent: number;
+  advisorText: string;
+  imageTopRight?: (string | null) | Media;
+  imageBottomLeft?: (string | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -339,6 +405,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'testimonial';
         value: string | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'homepageSections';
+        value: string | HomepageSection;
+      } | null)
+    | ({
+        relationTo: 'contactDetails';
+        value: string | ContactDetail;
+      } | null)
+    | ({
+        relationTo: 'studentTrustSection';
+        value: string | StudentTrustSection;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -534,6 +612,69 @@ export interface TestimonialSelect<T extends boolean = true> {
         avatar?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepageSections_select".
+ */
+export interface HomepageSectionsSelect<T extends boolean = true> {
+  title?: T;
+  hero?:
+    | T
+    | {
+        highlight?: T;
+        description?: T;
+        ctaText?: T;
+        image?: T;
+        testimonial?:
+          | T
+          | {
+              text?: T;
+              author?: T;
+              rating?: T;
+              avatar?: T;
+            };
+      };
+  services?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        iconType?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contactDetails_select".
+ */
+export interface ContactDetailsSelect<T extends boolean = true> {
+  phone?: T;
+  email?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "studentTrustSection_select".
+ */
+export interface StudentTrustSectionSelect<T extends boolean = true> {
+  studentCount?: T;
+  description?: T;
+  features?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  satisfactionPercent?: T;
+  advisorText?: T;
+  imageTopRight?: T;
+  imageBottomLeft?: T;
   updatedAt?: T;
   createdAt?: T;
 }
