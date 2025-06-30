@@ -221,7 +221,7 @@ export interface Service {
         id?: string | null;
       }[]
     | null;
-  image: string | Media;
+  image?: (string | null) | Media;
   buttonText?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -261,8 +261,8 @@ export interface FooterContent {
   officeAddress: string;
   email: string;
   phone: string;
-  videoImage: string | Media;
-  videoLink: string;
+  videoImage?: (string | null) | Media;
+  videoLink?: string | null;
   socialLinks: {
     facebook: string;
     instagram: string;
