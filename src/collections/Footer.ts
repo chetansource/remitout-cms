@@ -33,13 +33,11 @@ const FooterContent: CollectionConfig = {
       label: 'Video Thumbnail',
       type: 'upload',
       relationTo: 'media', // You must enable a media collection
-      required: true,
     },
     {
       name: 'videoLink',
       label: 'Video URL',
       type: 'text',
-      required: true,
     },
     {
       name: 'socialLinks',

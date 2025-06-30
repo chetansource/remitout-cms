@@ -33,7 +33,6 @@ const Services: CollectionConfig = {
       name: "image",
       type: "upload",
       relationTo: "media", // Make sure you have a media collection
-      required: true,
     },
     {
       name: "buttonText",
