@@ -31,7 +31,21 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Enquiries,Faqs, Services, WhyRemitout,GetInTouch,FooterContent,Newsletters,Testimonial,HomepageSections,ContactDetails,StudentTrustSection],
+  collections: [
+    Users,
+    Media,
+    Enquiries,
+    Faqs,
+    Services,
+    WhyRemitout,
+    GetInTouch,
+    FooterContent,
+    Newsletters,
+    Testimonial,
+    HomepageSections,
+    ContactDetails,
+    StudentTrustSection,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -47,6 +61,6 @@ export default buildConfig({
   ],
   cors: [
     'http://localhost:3000',
-    'https://remitout-landing.vercel.app/'
+    'https://remitout-landing.vercel.app/',
   ],
 })
