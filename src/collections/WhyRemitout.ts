@@ -21,8 +21,7 @@ const WhyRemitout: CollectionConfig = {
     {
       name: 'image',
       type: 'upload',
-      relationTo: 'media', // Make sure 'media' collection is defined
-      required: true,
+      relationTo: 'media', // Make sure 'media' collection is define
     },
   ],
 }
