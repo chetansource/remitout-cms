@@ -203,7 +203,7 @@ export interface Faq {
   id: string;
   question: string;
   answer: string;
-  category: 'pre-departure' | 'visa' | 'loan' | 'career';
+  category: 'admission-support' | 'loan-assistance' | 'visa-assistance' | 'money-transfer';
   updatedAt: string;
   createdAt: string;
 }
@@ -235,7 +235,7 @@ export interface WhyRemitout {
   title: string;
   description: string;
   iconType: 'Award' | 'PersonStar';
-  image: string | Media;
+  image?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -322,7 +322,7 @@ export interface HomepageSection {
     | {
         title?: string | null;
         description?: string | null;
-        iconType?: ('book' | 'flight' | 'pigMoney') | null;
+        iconType?: ('book' | 'flight' | 'pigMoney' | 'visaAssistance') | null;
         id?: string | null;
       }[]
     | null;
