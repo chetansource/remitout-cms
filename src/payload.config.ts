@@ -20,6 +20,8 @@ import Testimonial from './collections/Testimonial'
 import HomepageSections from './collections/Homepage'
 import ContactDetails from './collections/ContactDetails'
 import StudentTrustSection from './collections/TrustSection'
+import dotenv from 'dotenv'
+dotenv.config()
 
 
 const filename = fileURLToPath(import.meta.url)

@@ -1,5 +1,5 @@
 // src/types/payload.d.ts
-import type { PayloadRequest } from 'payload/types'
+import type { PayloadRequest as _PayloadRequest } from 'payload'
 
 declare module 'payload/types' {
   interface PayloadRequest {

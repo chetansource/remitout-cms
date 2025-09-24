@@ -227,8 +227,8 @@ const Enquiries: CollectionConfig = {
           })
 
           console.log('📧 Resend email sent:', response)
-        } catch (error) {
-          console.error('❌ Error sending Resend email:', error)
+        } catch (_err) {
+          console.error('Error sending Resend email:', _err)
         }
       },
     ],
