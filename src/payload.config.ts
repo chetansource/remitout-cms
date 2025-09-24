@@ -60,5 +60,5 @@ export default buildConfig({
     payloadCloudPlugin(),
     // storage-adapter-placeholder
   ],
-  cors: ['http://localhost:3000', 'https://remitout-landing.vercel.app'],
+  cors: ['http://localhost:3000' ,'https://remitout-landing.vercel.app'],
 })
