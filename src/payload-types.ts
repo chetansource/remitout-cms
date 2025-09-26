@@ -221,7 +221,7 @@ export interface Service {
         id?: string | null;
       }[]
     | null;
-  image?: (string | null) | Media;
+  image: string | Media;
   buttonText?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -235,7 +235,11 @@ export interface WhyRemitout {
   title: string;
   description: string;
   iconType: 'Award' | 'PersonStar';
-  image?: (string | null) | Media;
+  image: string | Media;
+  /**
+   * Controls the display order of items
+   */
+  order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -354,8 +358,8 @@ export interface StudentTrustSection {
   }[];
   satisfactionPercent: number;
   advisorText: string;
-  imageTopRight?: (string | null) | Media;
-  imageBottomLeft?: (string | null) | Media;
+  imageTopRight: string | Media;
+  imageBottomLeft: string | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -554,6 +558,7 @@ export interface WhyRemitoutSelect<T extends boolean = true> {
   description?: T;
   iconType?: T;
   image?: T;
+  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }

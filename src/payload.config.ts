@@ -6,7 +6,6 @@ import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
-
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import Enquiries from './collections/Enquiries'
@@ -21,11 +20,15 @@ import HomepageSections from './collections/Homepage'
 import ContactDetails from './collections/ContactDetails'
 import StudentTrustSection from './collections/TrustSection'
 import dotenv from 'dotenv'
+import { s3Storage } from '@payloadcms/storage-s3'
+
+
 dotenv.config()
 
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
 
 export default buildConfig({
   admin: {
@@ -61,6 +64,19 @@ export default buildConfig({
   plugins: [
     payloadCloudPlugin(),
     // storage-adapter-placeholder
+    s3Storage({
+      collections: {
+        media: true, // Enable S3 storage for the 'media' collection
+      },
+      bucket: process.env.AWS_S3_BUCKET!, // Your S3 bucket name
+      config: {
+        credentials: {
+          accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
+          secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
+        },
+        region: process.env.AWS_REGION,
+      },
+    }),
   ],
-  cors: ['http://localhost:3000' ,'https://remitout-landing.vercel.app'],
+  cors: ['http://localhost:3000', 'https://remitout-landing.vercel.app'],
 })

@@ -2,44 +2,46 @@
 import { CollectionConfig } from "payload";
 
 const Services: CollectionConfig = {
-  slug: "services",
+  slug: 'services',
   admin: {
-    useAsTitle: "title",
+    useAsTitle: 'title',
   },
   access: {
     read: () => true,
   },
   fields: [
     {
-      name: "title",
-      type: "text",
+      name: 'title',
+      type: 'text',
       required: true,
     },
     {
-      name: "subtitle",
-      type: "text",
+      name: 'subtitle',
+      type: 'text',
     },
     {
-      name: "description",
-      type: "array",
+      name: 'description',
+      type: 'array',
       fields: [
         {
-          name: "text",
-          type: "text",
+          name: 'text',
+          type: 'text',
         },
       ],
     },
     {
-      name: "image",
-      type: "upload",
-      relationTo: "media", // Make sure you have a media collection
+      name: 'image',
+      type: 'relationship',
+      relationTo: 'media',
+      required: true,
+      hasMany: false,
     },
     {
-      name: "buttonText",
-      type: "text",
-      defaultValue: "Contact to Know more",
+      name: 'buttonText',
+      type: 'text',
+      defaultValue: 'Contact to Know more',
     },
   ],
-};
+}
 
 export default Services;

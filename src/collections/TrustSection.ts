@@ -2,51 +2,55 @@
 import { CollectionConfig } from "payload";
 
 const StudentTrustSection: CollectionConfig = {
-  slug: "studentTrustSection",
+  slug: 'studentTrustSection',
   access: { read: () => true },
   fields: [
     {
-      name: "studentCount",
-      type: "number",
+      name: 'studentCount',
+      type: 'number',
       required: true,
     },
     {
-      name: "description",
-      type: "textarea",
+      name: 'description',
+      type: 'textarea',
       required: true,
     },
     {
-      name: "features",
-      type: "array",
+      name: 'features',
+      type: 'array',
       required: true,
       fields: [
         {
-          name: "text",
-          type: "text",
+          name: 'text',
+          type: 'text',
         },
       ],
     },
     {
-      name: "satisfactionPercent",
-      type: "number",
+      name: 'satisfactionPercent',
+      type: 'number',
       required: true,
     },
     {
-      name: "advisorText",
-      type: "text",
+      name: 'advisorText',
+      type: 'text',
       required: true,
     },
     {
-      name: "imageTopRight",
-      type: "upload",
-      relationTo: "media",
+      name: 'imageTopRight',
+      type: 'relationship',
+      relationTo: 'media',
+      required: true,
+      hasMany: false,
     },
     {
-      name: "imageBottomLeft",
-      type: "upload",
-      relationTo: "media",
+      name: 'imageBottomLeft',
+      type: 'relationship',
+      relationTo: 'media',
+      required: true,
+      hasMany: false,
     },
   ],
-};
+}
 
 export default StudentTrustSection;
