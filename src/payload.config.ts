@@ -38,19 +38,85 @@ export default buildConfig({
     },
   },
   collections: [
-    Users,
-    Media,
-    Enquiries,
-    Faqs,
-    Services,
-    WhyRemitout,
-    GetInTouch,
-    FooterContent,
-    Newsletters,
-    Testimonial,
-    HomepageSections,
-    ContactDetails,
-    StudentTrustSection,
+    {
+      ...Users,
+      admin: {
+        group: 'Authentication',
+      },
+    },
+    {
+      ...Media,
+      admin: {
+        group: 'Assets',
+      },
+    },
+    {
+      ...Enquiries,
+      admin: {
+        group: 'Leads & Contacts',
+      },
+    },
+    {
+      ...GetInTouch,
+      admin: {
+        group: 'Leads & Contacts',
+      },
+    },
+    {
+      ...Faqs,
+      admin: {
+        group: 'Content',
+      },
+    },
+    {
+      ...Services,
+      admin: {
+        group: 'Content',
+      },
+    },
+    {
+      ...WhyRemitout,
+      admin: {
+        group: 'Content',
+      },
+    },
+    {
+      ...HomepageSections,
+      admin: {
+        group: 'Content',
+      },
+    },
+    {
+      ...FooterContent,
+      admin: {
+        group: 'Site Settings',
+      },
+    },
+    {
+      ...ContactDetails,
+      admin: {
+        group: 'Site Settings',
+      },
+    },
+    {
+      ...StudentTrustSection,
+      admin: {
+        group: 'Content',
+      },
+    },
+    {
+      ...Newsletters,
+      admin: {
+        group: 'Marketing',
+      },
+    },
+    {
+      ...Testimonial,
+      admin: {
+        group: 'Marketing',
+      },
+    },
+
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
