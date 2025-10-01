@@ -146,5 +146,5 @@ export default buildConfig({
       },
     }),
   ],
-  cors: ['http://localhost:3000', 'https://remitout-landing.vercel.app'],
+  cors: ['http://localhost:3000', 'http://192.168.1.2:3000', 'https://remitout-landing.vercel.app'],
 })

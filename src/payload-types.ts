@@ -204,12 +204,17 @@ export interface WhyRemitout {
 export interface StudentTrustSection {
   id: string;
   studentCount: number;
+  /**
+   * Use {count} as a placeholder for student count
+   */
+  headline: string;
   description: string;
   features: {
     text?: string | null;
     id?: string | null;
   }[];
   satisfactionPercent: number;
+  satisfactionText: string;
   advisorText: string;
   imageTopRight: string | Media;
   imageBottomLeft: string | Media;
@@ -279,7 +284,20 @@ export interface FooterContent {
   socialLinks: {
     facebook: string;
     instagram: string;
-    customIcon?: string | null;
+    additionalLinks?:
+      | {
+          /**
+           * Name of the social media, e.g., LinkedIn
+           */
+          label: string;
+          icon: string | Media;
+          /**
+           * Link to your social profile
+           */
+          link: string;
+          id?: string | null;
+        }[]
+      | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -481,6 +499,7 @@ export interface WhyRemitoutSelect<T extends boolean = true> {
  */
 export interface StudentTrustSectionSelect<T extends boolean = true> {
   studentCount?: T;
+  headline?: T;
   description?: T;
   features?:
     | T
@@ -489,6 +508,7 @@ export interface StudentTrustSectionSelect<T extends boolean = true> {
         id?: T;
       };
   satisfactionPercent?: T;
+  satisfactionText?: T;
   advisorText?: T;
   imageTopRight?: T;
   imageBottomLeft?: T;
@@ -556,7 +576,14 @@ export interface FooterContentSelect<T extends boolean = true> {
     | {
         facebook?: T;
         instagram?: T;
-        customIcon?: T;
+        additionalLinks?:
+          | T
+          | {
+              label?: T;
+              icon?: T;
+              link?: T;
+              id?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;

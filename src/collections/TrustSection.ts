@@ -11,6 +11,14 @@ const StudentTrustSection: CollectionConfig = {
       required: true,
     },
     {
+      name: 'headline',
+      type: 'text', 
+      required: true,
+      admin: {
+        description: 'Use {count} as a placeholder for student count',
+      },
+    },
+    {
       name: 'description',
       type: 'textarea',
       required: true,
@@ -29,6 +37,11 @@ const StudentTrustSection: CollectionConfig = {
     {
       name: 'satisfactionPercent',
       type: 'number',
+      required: true,
+    },
+    {
+      name: 'satisfactionText',
+      type: 'textarea', // use textarea so you can add line breaks
       required: true,
     },
     {

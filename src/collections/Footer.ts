@@ -54,8 +54,31 @@ const FooterContent: CollectionConfig = {
           required: true,
         },
         {
-          name: 'customIcon',
-          type: 'text', // for now use URL; can later support custom icon logic
+          name: 'additionalLinks',
+          label: 'Additional Social Links',
+          type: 'array',
+          fields: [
+            {
+              name: 'label',
+              type: 'text',
+              required: true,
+              admin: { description: 'Name of the social media, e.g., LinkedIn' },
+            },
+            {
+              name: 'icon',
+              label: 'Icon',
+              type: 'relationship',
+              relationTo: 'media', 
+              required: true,
+              hasMany: false,
+            },
+            {
+              name: 'link',
+              type: 'text',
+              required: true,
+              admin: { description: 'Link to your social profile' },
+            },
+          ],
         },
       ],
     },
