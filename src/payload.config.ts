@@ -12,9 +12,9 @@ import Enquiries from './collections/Enquiries'
 import { Faqs } from './collections/Faqs'
 import Services from './collections/Services'
 import WhyRemitout from './collections/WhyRemitout'
-import { GetInTouch } from './collections/GetInTouch'
+// import { GetInTouch } from './collections/GetInTouch'
 import FooterContent from './collections/Footer'
-import Newsletters from './collections/Newsletters'
+// import Newsletters from './collections/Newsletters'
 import Testimonial from './collections/Testimonial'
 import HomepageSections from './collections/Homepage'
 import ContactDetails from './collections/ContactDetails'
@@ -39,53 +39,43 @@ export default buildConfig({
   },
   collections: [
     {
-      ...Users,
+      ...HomepageSections,
       admin: {
-        group: 'Authentication',
-      },
-    },
-    {
-      ...Media,
-      admin: {
-        group: 'Assets',
-      },
-    },
-    {
-      ...Enquiries,
-      admin: {
-        group: 'Leads & Contacts',
-      },
-    },
-    {
-      ...GetInTouch,
-      admin: {
-        group: 'Leads & Contacts',
-      },
-    },
-    {
-      ...Faqs,
-      admin: {
-        group: 'Content',
-      },
-    },
-    {
-      ...Services,
-      admin: {
-        group: 'Content',
+        group: 'Home',
       },
     },
     {
       ...WhyRemitout,
       admin: {
-        group: 'Content',
+        group: 'Home',
       },
     },
     {
-      ...HomepageSections,
+      ...StudentTrustSection,
       admin: {
-        group: 'Content',
+        group: 'Home',
       },
     },
+    {
+      ...Services,
+      admin: {
+        group: 'Home',
+      },
+    },
+    {
+      ...Testimonial,
+      admin: {
+        group: 'Home',
+      },
+    },
+    {
+      ...Faqs,
+      admin: {
+        group: 'Home',
+      },
+    },
+
+    // --- other groups ---
     {
       ...FooterContent,
       admin: {
@@ -99,25 +89,37 @@ export default buildConfig({
       },
     },
     {
-      ...StudentTrustSection,
+      ...Users,
       admin: {
-        group: 'Content',
+        group: 'Authentication',
       },
     },
     {
-      ...Newsletters,
+      ...Enquiries,
       admin: {
-        group: 'Marketing',
+        group: 'Leads & Contacts',
       },
     },
     {
-      ...Testimonial,
+      ...Media,
       admin: {
-        group: 'Marketing',
+        group: 'Assets',
       },
     },
-
+    // {
+    //   ...GetInTouch,
+    //   admin: {
+    //     group: 'Leads & Contacts',
+    //   },
+    // },
+    // {
+    //   ...Newsletters,
+    //   admin: {
+    //     group: 'Marketing',
+    //   },
+    // },
   ],
+
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

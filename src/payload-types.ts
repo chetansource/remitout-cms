@@ -67,38 +67,34 @@ export interface Config {
   };
   blocks: {};
   collections: {
-    users: User;
-    media: Media;
-    enquiries: Enquiry;
-    'get-in-touch': GetInTouch;
-    faqs: Faq;
-    services: Service;
-    'why-remitout': WhyRemitout;
     homepageSections: HomepageSection;
+    'why-remitout': WhyRemitout;
+    studentTrustSection: StudentTrustSection;
+    services: Service;
+    testimonial: Testimonial;
+    faqs: Faq;
     'footer-content': FooterContent;
     contactDetails: ContactDetail;
-    studentTrustSection: StudentTrustSection;
-    newsletters: Newsletter;
-    testimonial: Testimonial;
+    users: User;
+    enquiries: Enquiry;
+    media: Media;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
   collectionsJoins: {};
   collectionsSelect: {
-    users: UsersSelect<false> | UsersSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
-    enquiries: EnquiriesSelect<false> | EnquiriesSelect<true>;
-    'get-in-touch': GetInTouchSelect<false> | GetInTouchSelect<true>;
-    faqs: FaqsSelect<false> | FaqsSelect<true>;
-    services: ServicesSelect<false> | ServicesSelect<true>;
-    'why-remitout': WhyRemitoutSelect<false> | WhyRemitoutSelect<true>;
     homepageSections: HomepageSectionsSelect<false> | HomepageSectionsSelect<true>;
+    'why-remitout': WhyRemitoutSelect<false> | WhyRemitoutSelect<true>;
+    studentTrustSection: StudentTrustSectionSelect<false> | StudentTrustSectionSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
+    testimonial: TestimonialSelect<false> | TestimonialSelect<true>;
+    faqs: FaqsSelect<false> | FaqsSelect<true>;
     'footer-content': FooterContentSelect<false> | FooterContentSelect<true>;
     contactDetails: ContactDetailsSelect<false> | ContactDetailsSelect<true>;
-    studentTrustSection: StudentTrustSectionSelect<false> | StudentTrustSectionSelect<true>;
-    newsletters: NewslettersSelect<false> | NewslettersSelect<true>;
-    testimonial: TestimonialSelect<false> | TestimonialSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
+    enquiries: EnquiriesSelect<false> | EnquiriesSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -137,127 +133,6 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: string;
-  role: 'admin' | 'user';
-  name: string;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: string;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "enquiries".
- */
-export interface Enquiry {
-  id: string;
-  fullName: string;
-  email: string;
-  phoneCountryCode: string;
-  phoneNumber: string;
-  serviceInterestedIn: 'consultation' | 'money-transfer' | 'business-services' | 'other';
-  message: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "get-in-touch".
- */
-export interface GetInTouch {
-  id: string;
-  name: string;
-  email: string;
-  message: string;
-  acceptTerms: boolean;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "faqs".
- */
-export interface Faq {
-  id: string;
-  question: string;
-  answer: string;
-  category: 'admission-support' | 'loan-assistance' | 'visa-assistance' | 'money-transfer';
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "services".
- */
-export interface Service {
-  id: string;
-  title: string;
-  subtitle?: string | null;
-  description?:
-    | {
-        text?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  image: string | Media;
-  buttonText?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "why-remitout".
- */
-export interface WhyRemitout {
-  id: string;
-  title: string;
-  description: string;
-  iconType: 'Award' | 'PersonStar';
-  image: string | Media;
-  /**
-   * Controls the display order of items
-   */
-  order?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "homepageSections".
  */
 export interface HomepageSection {
@@ -283,6 +158,110 @@ export interface HomepageSection {
         id?: string | null;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: string;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "why-remitout".
+ */
+export interface WhyRemitout {
+  id: string;
+  title: string;
+  description: string;
+  iconType: 'Award' | 'PersonStar';
+  image: string | Media;
+  /**
+   * Controls the display order of items
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "studentTrustSection".
+ */
+export interface StudentTrustSection {
+  id: string;
+  studentCount: number;
+  description: string;
+  features: {
+    text?: string | null;
+    id?: string | null;
+  }[];
+  satisfactionPercent: number;
+  advisorText: string;
+  imageTopRight: string | Media;
+  imageBottomLeft: string | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: string;
+  title: string;
+  subtitle?: string | null;
+  description?:
+    | {
+        text?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  image: string | Media;
+  buttonText?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonial".
+ */
+export interface Testimonial {
+  id: string;
+  testimonials?:
+    | {
+        text: string;
+        name: string;
+        rating: number;
+        avatar?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
+export interface Faq {
+  id: string;
+  question: string;
+  answer: string;
+  category: 'admission-support' | 'loan-assistance' | 'visa-assistance' | 'money-transfer';
   updatedAt: string;
   createdAt: string;
 }
@@ -318,48 +297,42 @@ export interface ContactDetail {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "studentTrustSection".
+ * via the `definition` "users".
  */
-export interface StudentTrustSection {
+export interface User {
   id: string;
-  studentCount: number;
-  description: string;
-  features: {
-    text?: string | null;
-    id?: string | null;
-  }[];
-  satisfactionPercent: number;
-  advisorText: string;
-  imageTopRight: string | Media;
-  imageBottomLeft: string | Media;
+  role: 'admin' | 'user';
+  name: string;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "newsletters".
- */
-export interface Newsletter {
-  id: string;
   email: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonial".
- */
-export interface Testimonial {
-  id: string;
-  testimonials?:
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
     | {
-        text: string;
-        name: string;
-        rating: number;
-        avatar?: (string | null) | Media;
-        id?: string | null;
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
       }[]
     | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "enquiries".
+ */
+export interface Enquiry {
+  id: string;
+  fullName: string;
+  email: string;
+  phoneCountryCode: string;
+  phoneNumber: string;
+  serviceInterestedIn: 'consultation' | 'money-transfer' | 'business-services' | 'other';
+  message: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -371,36 +344,28 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'users';
-        value: string | User;
-      } | null)
-    | ({
-        relationTo: 'media';
-        value: string | Media;
-      } | null)
-    | ({
-        relationTo: 'enquiries';
-        value: string | Enquiry;
-      } | null)
-    | ({
-        relationTo: 'get-in-touch';
-        value: string | GetInTouch;
-      } | null)
-    | ({
-        relationTo: 'faqs';
-        value: string | Faq;
-      } | null)
-    | ({
-        relationTo: 'services';
-        value: string | Service;
+        relationTo: 'homepageSections';
+        value: string | HomepageSection;
       } | null)
     | ({
         relationTo: 'why-remitout';
         value: string | WhyRemitout;
       } | null)
     | ({
-        relationTo: 'homepageSections';
-        value: string | HomepageSection;
+        relationTo: 'studentTrustSection';
+        value: string | StudentTrustSection;
+      } | null)
+    | ({
+        relationTo: 'services';
+        value: string | Service;
+      } | null)
+    | ({
+        relationTo: 'testimonial';
+        value: string | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'faqs';
+        value: string | Faq;
       } | null)
     | ({
         relationTo: 'footer-content';
@@ -411,16 +376,16 @@ export interface PayloadLockedDocument {
         value: string | ContactDetail;
       } | null)
     | ({
-        relationTo: 'studentTrustSection';
-        value: string | StudentTrustSection;
+        relationTo: 'users';
+        value: string | User;
       } | null)
     | ({
-        relationTo: 'newsletters';
-        value: string | Newsletter;
+        relationTo: 'enquiries';
+        value: string | Enquiry;
       } | null)
     | ({
-        relationTo: 'testimonial';
-        value: string | Testimonial;
+        relationTo: 'media';
+        value: string | Media;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -466,116 +431,6 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users_select".
- */
-export interface UsersSelect<T extends boolean = true> {
-  role?: T;
-  name?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
-  sessions?:
-    | T
-    | {
-        id?: T;
-        createdAt?: T;
-        expiresAt?: T;
-      };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
- */
-export interface MediaSelect<T extends boolean = true> {
-  alt?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "enquiries_select".
- */
-export interface EnquiriesSelect<T extends boolean = true> {
-  fullName?: T;
-  email?: T;
-  phoneCountryCode?: T;
-  phoneNumber?: T;
-  serviceInterestedIn?: T;
-  message?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "get-in-touch_select".
- */
-export interface GetInTouchSelect<T extends boolean = true> {
-  name?: T;
-  email?: T;
-  message?: T;
-  acceptTerms?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "faqs_select".
- */
-export interface FaqsSelect<T extends boolean = true> {
-  question?: T;
-  answer?: T;
-  category?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "services_select".
- */
-export interface ServicesSelect<T extends boolean = true> {
-  title?: T;
-  subtitle?: T;
-  description?:
-    | T
-    | {
-        text?: T;
-        id?: T;
-      };
-  image?: T;
-  buttonText?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "why-remitout_select".
- */
-export interface WhyRemitoutSelect<T extends boolean = true> {
-  title?: T;
-  description?: T;
-  iconType?: T;
-  image?: T;
-  order?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "homepageSections_select".
  */
 export interface HomepageSectionsSelect<T extends boolean = true> {
@@ -604,6 +459,85 @@ export interface HomepageSectionsSelect<T extends boolean = true> {
         iconType?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "why-remitout_select".
+ */
+export interface WhyRemitoutSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  iconType?: T;
+  image?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "studentTrustSection_select".
+ */
+export interface StudentTrustSectionSelect<T extends boolean = true> {
+  studentCount?: T;
+  description?: T;
+  features?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  satisfactionPercent?: T;
+  advisorText?: T;
+  imageTopRight?: T;
+  imageBottomLeft?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  description?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  image?: T;
+  buttonText?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonial_select".
+ */
+export interface TestimonialSelect<T extends boolean = true> {
+  testimonials?:
+    | T
+    | {
+        text?: T;
+        name?: T;
+        rating?: T;
+        avatar?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs_select".
+ */
+export interface FaqsSelect<T extends boolean = true> {
+  question?: T;
+  answer?: T;
+  category?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -639,49 +573,59 @@ export interface ContactDetailsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "studentTrustSection_select".
+ * via the `definition` "users_select".
  */
-export interface StudentTrustSectionSelect<T extends boolean = true> {
-  studentCount?: T;
-  description?: T;
-  features?:
-    | T
-    | {
-        text?: T;
-        id?: T;
-      };
-  satisfactionPercent?: T;
-  advisorText?: T;
-  imageTopRight?: T;
-  imageBottomLeft?: T;
+export interface UsersSelect<T extends boolean = true> {
+  role?: T;
+  name?: T;
   updatedAt?: T;
   createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "newsletters_select".
- */
-export interface NewslettersSelect<T extends boolean = true> {
   email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "enquiries_select".
+ */
+export interface EnquiriesSelect<T extends boolean = true> {
+  fullName?: T;
+  email?: T;
+  phoneCountryCode?: T;
+  phoneNumber?: T;
+  serviceInterestedIn?: T;
+  message?: T;
   updatedAt?: T;
   createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonial_select".
+ * via the `definition` "media_select".
  */
-export interface TestimonialSelect<T extends boolean = true> {
-  testimonials?:
-    | T
-    | {
-        text?: T;
-        name?: T;
-        rating?: T;
-        avatar?: T;
-        id?: T;
-      };
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
   updatedAt?: T;
   createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
