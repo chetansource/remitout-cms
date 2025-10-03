@@ -240,6 +240,7 @@ const Enquiries: CollectionConfig = {
         try {
           // 1️⃣ Get access token from refresh token
           const { access_token } = await getZohoAccessToken()
+          console.log("access_token:", access_token)
 
           // 2️⃣ Create contact in Zoho
           const crmRes = await createZohoContact(access_token, doc)

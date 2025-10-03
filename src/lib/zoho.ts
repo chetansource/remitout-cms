@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 
 export async function getZohoAccessToken() {
-  const res = await fetch(`${process.env.ZOHO_API_DOMAIN}/oauth/v2/token`, {
+  const res = await fetch(`${process.env.ZOHO_AUTH_DOMAIN}/oauth/v2/token`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({
@@ -12,11 +12,18 @@ export async function getZohoAccessToken() {
     }),
   })
 
-  if (!res.ok) {
-    throw new Error(`Zoho token error: ${res.status} ${await res.text()}`)
-  }
+ if (!res.ok) {
+   const errorText = await res.text() // consume once
+   throw new Error(`Failed to fetch Zoho token: ${errorText}`)
+ }
 
-  return res.json() as Promise<{ access_token: string }>
+ const data = (await res.json()) as {
+   access_token: string
+   refresh_token?: string
+   expires_in: number
+   api_domain: string
+ }
+  return data
 }
 
 export async function createZohoContact(accessToken: string, enquiry: any) {
