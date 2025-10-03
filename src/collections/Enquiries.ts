@@ -2,6 +2,7 @@ import { CollectionConfig } from 'payload'
 import {Resend} from 'resend'
 import dotenv from 'dotenv'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
+import { getZohoAccessToken, createZohoContact } from '../lib/zoho'
 
 dotenv.config()
 
@@ -207,6 +208,9 @@ const Enquiries: CollectionConfig = {
           }
         }
 
+        // ------------------------
+        // 1️⃣ Resend email 
+        // ------------------------
         // Build HTML for manager email
         const html = `
           <h2>New Enquiry Received</h2>
@@ -229,6 +233,20 @@ const Enquiries: CollectionConfig = {
           console.log('📧 Resend email sent:', response)
         } catch (_err) {
           console.error('Error sending Resend email:', _err)
+        }
+        // ------------------------
+        // 2️⃣ Zoho CRM integration (NEW)
+        // ------------------------
+        try {
+          // 1️⃣ Get access token from refresh token
+          const { access_token } = await getZohoAccessToken()
+
+          // 2️⃣ Create contact in Zoho
+          const crmRes = await createZohoContact(access_token, doc)
+
+          console.log('✅ Zoho CRM contact created:', crmRes)
+        } catch (err) {
+          console.error('❌ Error creating Zoho contact:', err)
         }
       },
     ],
