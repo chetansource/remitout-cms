@@ -12,7 +12,7 @@ const StudentTrustSection: CollectionConfig = {
     },
     {
       name: 'headline',
-      type: 'text', 
+      type: 'text',
       required: true,
       admin: {
         description: 'Use {count} as a placeholder for student count',
@@ -62,6 +62,16 @@ const StudentTrustSection: CollectionConfig = {
       relationTo: 'media',
       required: true,
       hasMany: false,
+    },
+    {
+      name: 'buttonText', 
+      type: 'text',
+      defaultValue: 'Contact to know more',
+    },
+    {
+      name: 'buttonLink', 
+      type: 'text', 
+      defaultValue: '/contact-us',
     },
   ],
 }

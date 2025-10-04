@@ -41,6 +41,12 @@ const Services: CollectionConfig = {
       type: 'text',
       defaultValue: 'Contact to Know more',
     },
+    {
+      name: 'buttonLink', 
+      type: 'text', 
+      label: 'Button Link',
+      defaultValue: '/contact-us', 
+    },
   ],
 }
 

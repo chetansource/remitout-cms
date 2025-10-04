@@ -148,6 +148,7 @@ export interface HomepageSection {
     highlight?: string | null;
     description?: string | null;
     ctaText?: string | null;
+    ctaLink?: string | null;
     image?: (string | null) | Media;
     testimonial?: {
       text?: string | null;
@@ -238,6 +239,8 @@ export interface StudentTrustSection {
   advisorText: string;
   imageTopRight: string | Media;
   imageBottomLeft: string | Media;
+  buttonText?: string | null;
+  buttonLink?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -257,6 +260,7 @@ export interface Service {
     | null;
   image: string | Media;
   buttonText?: string | null;
+  buttonLink?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -483,6 +487,7 @@ export interface HomepageSectionsSelect<T extends boolean = true> {
         highlight?: T;
         description?: T;
         ctaText?: T;
+        ctaLink?: T;
         image?: T;
         testimonial?:
           | T
@@ -549,6 +554,8 @@ export interface StudentTrustSectionSelect<T extends boolean = true> {
   advisorText?: T;
   imageTopRight?: T;
   imageBottomLeft?: T;
+  buttonText?: T;
+  buttonLink?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -567,6 +574,7 @@ export interface ServicesSelect<T extends boolean = true> {
       };
   image?: T;
   buttonText?: T;
+  buttonLink?: T;
   updatedAt?: T;
   createdAt?: T;
 }

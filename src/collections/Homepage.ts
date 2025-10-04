@@ -32,6 +32,11 @@ const HomepageSections: CollectionConfig = {
           type: 'text',
         },
         {
+          name: 'ctaLink', 
+          type: 'text',
+          label: 'CTA Link',
+        },
+        {
           name: 'image',
           type: 'upload',
           relationTo: 'media',
@@ -93,7 +98,7 @@ const HomepageSections: CollectionConfig = {
             },
             {
               label: 'Visa Assistance',
-              value: 'visaAssistance', 
+              value: 'visaAssistance',
             },
           ],
         },
