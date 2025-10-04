@@ -1,6 +1,4 @@
-// payload.config.ts
 import { CollectionConfig } from 'payload'
-import sharp from 'sharp'
 
 const WhyRemitout: CollectionConfig = {
   slug: 'why-remitout',

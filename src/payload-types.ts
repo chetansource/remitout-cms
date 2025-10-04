@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     homepageSections: HomepageSection;
     'why-remitout': WhyRemitout;
+    'why-remitout-cta': WhyRemitoutCta;
     studentTrustSection: StudentTrustSection;
     services: Service;
     testimonial: Testimonial;
@@ -86,6 +87,7 @@ export interface Config {
   collectionsSelect: {
     homepageSections: HomepageSectionsSelect<false> | HomepageSectionsSelect<true>;
     'why-remitout': WhyRemitoutSelect<false> | WhyRemitoutSelect<true>;
+    'why-remitout-cta': WhyRemitoutCtaSelect<false> | WhyRemitoutCtaSelect<true>;
     studentTrustSection: StudentTrustSectionSelect<false> | StudentTrustSectionSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
     testimonial: TestimonialSelect<false> | TestimonialSelect<true>;
@@ -194,6 +196,20 @@ export interface WhyRemitout {
    * Controls the display order of items
    */
   order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "why-remitout-cta".
+ */
+export interface WhyRemitoutCta {
+  id: string;
+  title: string;
+  description: string;
+  buttonText: string;
+  buttonLink?: string | null;
+  image?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -370,6 +386,10 @@ export interface PayloadLockedDocument {
         value: string | WhyRemitout;
       } | null)
     | ({
+        relationTo: 'why-remitout-cta';
+        value: string | WhyRemitoutCta;
+      } | null)
+    | ({
         relationTo: 'studentTrustSection';
         value: string | StudentTrustSection;
       } | null)
@@ -490,6 +510,19 @@ export interface WhyRemitoutSelect<T extends boolean = true> {
   iconType?: T;
   image?: T;
   order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "why-remitout-cta_select".
+ */
+export interface WhyRemitoutCtaSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  buttonText?: T;
+  buttonLink?: T;
+  image?: T;
   updatedAt?: T;
   createdAt?: T;
 }

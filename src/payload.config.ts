@@ -19,6 +19,7 @@ import Testimonial from './collections/Testimonial'
 import HomepageSections from './collections/Homepage'
 import ContactDetails from './collections/ContactDetails'
 import StudentTrustSection from './collections/TrustSection'
+import WhyRemitoutCTA from './collections/WhyRemitoutCTA' 
 import dotenv from 'dotenv'
 import { s3Storage } from '@payloadcms/storage-s3'
 
@@ -46,6 +47,12 @@ export default buildConfig({
     },
     {
       ...WhyRemitout,
+      admin: {
+        group: 'Home',
+      },
+    },
+    {
+      ...WhyRemitoutCTA, // <-- add your new CTA collection here
       admin: {
         group: 'Home',
       },
