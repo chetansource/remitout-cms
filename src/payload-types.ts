@@ -104,8 +104,12 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    seo: Seo;
+  };
+  globalsSelect: {
+    seo: SeoSelect<false> | SeoSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -718,6 +722,42 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seo".
+ */
+export interface Seo {
+  id: string;
+  metaTitle: string;
+  metaDescription: string;
+  canonicalUrl?: string | null;
+  ogTitle?: string | null;
+  ogDescription?: string | null;
+  ogImage?: (string | null) | Media;
+  ogImageUrl?: string | null;
+  ogUrl?: string | null;
+  twitterCard?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seo_select".
+ */
+export interface SeoSelect<T extends boolean = true> {
+  metaTitle?: T;
+  metaDescription?: T;
+  canonicalUrl?: T;
+  ogTitle?: T;
+  ogDescription?: T;
+  ogImage?: T;
+  ogImageUrl?: T;
+  ogUrl?: T;
+  twitterCard?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

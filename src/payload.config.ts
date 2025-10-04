@@ -22,6 +22,7 @@ import StudentTrustSection from './collections/TrustSection'
 import WhyRemitoutCTA from './collections/WhyRemitoutCTA' 
 import dotenv from 'dotenv'
 import { s3Storage } from '@payloadcms/storage-s3'
+import { SEO } from './collections/Seo'
 
 
 dotenv.config()
@@ -125,6 +126,9 @@ export default buildConfig({
     //     group: 'Marketing',
     //   },
     // },
+  ],
+  globals: [
+    SEO, // <-- added SEO global
   ],
 
   editor: lexicalEditor(),
