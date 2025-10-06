@@ -144,8 +144,10 @@ export interface UserAuthOperations {
 export interface HomepageSection {
   id: string;
   title: string;
-  hero?: {
+  hero: {
     highlight?: string | null;
+    heading: string;
+    subheading?: string | null;
     description?: string | null;
     ctaText?: string | null;
     ctaLink?: string | null;
@@ -303,8 +305,7 @@ export interface FooterContent {
   officeAddress: string;
   email: string;
   phone: string;
-  videoImage?: (string | null) | Media;
-  videoLink?: string | null;
+  image?: (string | null) | Media;
   socialLinks: {
     facebook: string;
     instagram: string;
@@ -485,6 +486,8 @@ export interface HomepageSectionsSelect<T extends boolean = true> {
     | T
     | {
         highlight?: T;
+        heading?: T;
+        subheading?: T;
         description?: T;
         ctaText?: T;
         ctaLink?: T;
@@ -614,8 +617,7 @@ export interface FooterContentSelect<T extends boolean = true> {
   officeAddress?: T;
   email?: T;
   phone?: T;
-  videoImage?: T;
-  videoLink?: T;
+  image?: T;
   socialLinks?:
     | T
     | {

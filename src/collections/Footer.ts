@@ -29,15 +29,10 @@ const FooterContent: CollectionConfig = {
       required: true,
     },
     {
-      name: 'videoImage',
-      label: 'Video Thumbnail',
+      name: 'image', // changed from videoImage
+      label: 'Thumbnail Image',
       type: 'upload',
-      relationTo: 'media', // You must enable a media collection
-    },
-    {
-      name: 'videoLink',
-      label: 'Video URL',
-      type: 'text',
+      relationTo: 'media',
     },
     {
       name: 'socialLinks',
@@ -68,7 +63,7 @@ const FooterContent: CollectionConfig = {
               name: 'icon',
               label: 'Icon',
               type: 'relationship',
-              relationTo: 'media', 
+              relationTo: 'media',
               required: true,
               hasMany: false,
             },

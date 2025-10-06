@@ -23,6 +23,21 @@ const HomepageSections: CollectionConfig = {
           name: 'highlight',
           type: 'text',
         },
+        // Single dynamic heading with inline HTML for italic
+        {
+          name: 'heading',
+          type: 'textarea',
+          label: 'Hero Heading (H1)',
+          required: true,
+        },
+
+        // Subheading text
+        {
+          name: 'subheading',
+          type: 'text',
+          label: 'Hero Subheading',
+        },
+
         {
           name: 'description',
           type: 'textarea',
@@ -32,7 +47,7 @@ const HomepageSections: CollectionConfig = {
           type: 'text',
         },
         {
-          name: 'ctaLink', 
+          name: 'ctaLink',
           type: 'text',
           label: 'CTA Link',
         },
