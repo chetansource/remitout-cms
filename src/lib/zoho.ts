@@ -1,5 +1,13 @@
 import fetch from 'node-fetch'
 
+interface EnquiryData {
+  fullName?: string
+  email?: string
+  phoneCountryCode?: string
+  phoneNumber?: string
+  message?: string
+}
+
 export async function getZohoAccessToken() {
   const res = await fetch(`${process.env.ZOHO_AUTH_DOMAIN}/oauth/v2/token`, {
     method: 'POST',
@@ -26,7 +34,7 @@ export async function getZohoAccessToken() {
   return data
 }
 
-export async function createZohoContact(accessToken: string, enquiry: any) {
+export async function createZohoContact(accessToken: string, enquiry: EnquiryData) {
   const body = {
     data: [
       {

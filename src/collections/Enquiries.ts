@@ -6,7 +6,14 @@ import { getZohoAccessToken, createZohoContact } from '../lib/zoho'
 
 dotenv.config()
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const getResendClient = () => {
+  const apiKey = process.env.RESEND_API_KEY
+  if (!apiKey) {
+    console.warn('⚠️ RESEND_API_KEY not set — skipping email send')
+    return null
+  }
+  return new Resend(apiKey)
+}
 
 // -----------------------
 // Helper utilities
@@ -37,7 +44,7 @@ const isValidPhone = (countryCode: string | undefined, numberRaw: string | undef
   try {
     const parsed = parsePhoneNumberFromString(candidate)
     return !!(parsed && parsed.isValid())
-  } catch (err) {
+  } catch (_err) {
     return false
   }
 }
@@ -140,7 +147,10 @@ const Enquiries: CollectionConfig = {
       type: 'text',
       label: 'Phone Number',
       required: true,
-      validate: (value: unknown, { siblingData }: any) => {
+      validate: (
+        value: unknown,
+        { siblingData }: { siblingData?: { phoneCountryCode?: string } },
+      ) => {
         const num = String(value || '').trim()
         const cc = siblingData?.phoneCountryCode
         if (!num) return 'Phone number is required'
@@ -202,14 +212,14 @@ const Enquiries: CollectionConfig = {
               gmailVariantsNote = `<p><strong>Gmail canonical:</strong> ${gmailInfo.normalized}</p>
                 <p><strong>Total dot-variants:</strong> ${variants.length}</p>
                 <p><strong>Variants (all):</strong><br/>${variants.join('<br/>')}</p>`
-            } catch (err) {
+            } catch (_err) {
               gmailVariantsNote = `<p><strong>Gmail canonical:</strong> ${gmailInfo.normalized} (variants generation skipped)</p>`
             }
           }
         }
 
         // ------------------------
-        // 1️⃣ Resend email 
+        // 1️⃣ Resend email
         // ------------------------
         // Build HTML for manager email
         const html = `
@@ -223,14 +233,18 @@ const Enquiries: CollectionConfig = {
         `
 
         try {
-          const response = await resend.emails.send({
-            from: 'Support@remitout.com', // Use a verified domain in production
-            to: process.env.MANAGER_EMAIL!,
-            subject: `New enquiry from ${fullName}`,
-            html,
-          })
-
-          console.log('📧 Resend email sent:', response)
+          const resend = getResendClient()
+          if (resend) {
+            const response = await resend.emails.send({
+              from: 'Support@remitout.com',
+              to: process.env.MANAGER_EMAIL!,
+              subject: `New enquiry from ${fullName}`,
+              html,
+            })
+            console.log('📧 Resend email sent:', response)
+          } else {
+            console.warn('⚠️ Skipping email — no RESEND_API_KEY found')
+          }
         } catch (_err) {
           console.error('Error sending Resend email:', _err)
         }
@@ -240,7 +254,7 @@ const Enquiries: CollectionConfig = {
         try {
           // 1️⃣ Get access token from refresh token
           const { access_token } = await getZohoAccessToken()
-          console.log("access_token:", access_token)
+          console.log('access_token:', access_token)
 
           // 2️⃣ Create contact in Zoho
           const crmRes = await createZohoContact(access_token, doc)
