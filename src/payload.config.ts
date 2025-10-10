@@ -161,6 +161,7 @@ export default buildConfig({
     'http://localhost:3000',
     'http://127.0.0.1:3000',
     'http://127.0.0.1:5000',
+    'http://66.116.196.83:3000',
     'https://remitout-landing.vercel.app',
     'https://totheweb.com',
   ],
