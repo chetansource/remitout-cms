@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import { getS3Url } from '../utils/s3Url'
+// import { getS3Url } from '../utils/s3Url'
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -25,13 +25,6 @@ export const Media: CollectionConfig = {
       name: 'alt',
       type: 'text',
       required: true,
-    },
-    {
-      name: 'url', // store the full S3 URL
-      type: 'text',
-      admin: {
-        readOnly: true,
-      },
     },
   ],
 }

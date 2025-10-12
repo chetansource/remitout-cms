@@ -1,6 +1,6 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
+// import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -21,7 +21,7 @@ import ContactDetails from './collections/ContactDetails'
 import StudentTrustSection from './collections/TrustSection'
 import WhyRemitoutCTA from './collections/WhyRemitoutCTA' 
 import dotenv from 'dotenv'
-import { s3Storage } from '@payloadcms/storage-s3'
+// import { s3Storage } from '@payloadcms/storage-s3'
 import { SEO } from './collections/Seo'
 
 
