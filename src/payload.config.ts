@@ -140,28 +140,13 @@ export default buildConfig({
     url: process.env.DATABASE_URI || '',
   }),
   sharp,
-  plugins: [
-    payloadCloudPlugin(),
-    // storage-adapter-placeholder
-    s3Storage({
-      collections: {
-        media: true, // Enable S3 storage for the 'media' collection
-      },
-      bucket: process.env.AWS_S3_BUCKET!, // Your S3 bucket name
-      config: {
-        credentials: {
-          accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-          secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
-        },
-        region: process.env.AWS_REGION,
-      },
-    }),
-  ],
+  plugins: [],
   cors: [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
     'http://127.0.0.1:5000',
     'http://66.116.196.83:3000',
+    'http://loan.remitout.com',
     'https://remitout-landing.vercel.app',
     'https://totheweb.com',
   ],

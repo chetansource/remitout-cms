@@ -6,7 +6,20 @@ export const Media: CollectionConfig = {
   access: {
     read: () => true,
   },
-  upload: true,
+  upload: {
+    staticDir: 'media',
+    imageSizes: [
+      {
+        name: 'thumbnail',
+        width: 400,
+        height: 300,
+        position: 'centre',
+      },
+      // ... other sizes
+    ],
+    adminThumbnail: 'thumbnail',
+    mimeTypes: ['image/*'],
+  },
   fields: [
     {
       name: 'alt',
@@ -21,14 +34,4 @@ export const Media: CollectionConfig = {
       },
     },
   ],
-  hooks: {
-    beforeChange: [
-      async ({ data }) => {
-        if (data.filename) {
-          data.url = getS3Url(data.filename) // populate full S3 URL before saving
-        }
-        return data
-      },
-    ],
-  },
 }
