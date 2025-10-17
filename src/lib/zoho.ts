@@ -40,7 +40,7 @@ export async function createZohoContact(accessToken: string, enquiry: EnquiryDat
       {
         Last_Name: enquiry.fullName || 'Unknown',
         Email: enquiry.email,
-        Phone: `${enquiry.phoneCountryCode}${enquiry.phoneNumber}`,
+        Mobile: `${enquiry.phoneCountryCode}${enquiry.phoneNumber}`,
         Description: enquiry.message,
         Lead_Source: 'Website Contact',
       },
