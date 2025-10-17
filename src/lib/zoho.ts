@@ -42,7 +42,7 @@ export async function createZohoContact(accessToken: string, enquiry: EnquiryDat
         Email: enquiry.email,
         Mobile: `${enquiry.phoneCountryCode}${enquiry.phoneNumber}`,
         Description: enquiry.message,
-        Lead_Source: 'Website Contact',
+        Lead_Source: 'Landing Page',
       },
     ],
   }
